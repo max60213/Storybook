@@ -1,0 +1,133 @@
+@import "tailwindcss/preflight";
+@tailwind utilities;
+
+@layer components {
+  .section {
+    /* Responsive padding using clamp */
+    padding: clamp(5.375rem, 4.0625rem + 3.5vw, 8rem) clamp(1.25rem, -2.125rem + 9vw, 8rem);
+    
+    &--dark {
+      @apply bg-gray-900 text-white;
+    }
+  }
+
+  .testimonials {
+    .testimonials-swiper {
+      @apply !overflow-visible;
+      
+      .swiper-slide {
+        @apply !w-auto !max-w-[90vw] sm:!max-w-[480px] lg:!max-w-[640px];
+        
+        /* Card styling with hover effects */
+        & > div {
+          @apply transition-transform duration-300 hover:scale-105;
+          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+          
+          &:hover {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+          }
+        }
+      }
+      
+      .swiper-slide-active {
+        & > div {
+          @apply scale-105;
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+      }
+    }
+    
+    .quote-icon {
+      @apply w-8 h-8 lg:w-12 lg:h-12 mb-4 lg:mb-6 opacity-20;
+      
+      path {
+        @apply stroke-current;
+      }
+    }
+    
+    /* Custom pagination styles */
+    .custom-swiper-pagination {
+      @apply flex gap-3;
+      
+      .swiper-pagination-bullet {
+        @apply w-3 h-3 bg-white/30 rounded-full transition-all duration-300 cursor-pointer;
+        
+        &:hover {
+          @apply bg-white/50 scale-110;
+        }
+        
+        &.swiper-pagination-bullet-active {
+          @apply bg-white scale-125;
+        }
+      }
+    }
+  }
+
+  /* Typography styles */
+  .font-serif {
+    font-family: 'Times New Roman', serif;
+  }
+
+  .font-sans {
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+}
+
+@layer utilities {
+  /* Animation utilities */
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-in-out;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.8s ease-out;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .testimonials {
+    .testimonials-swiper {
+      .swiper-slide {
+        @apply !max-w-[85vw];
+        
+        & > div {
+          @apply p-6;
+          min-height: auto !important;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  .testimonials {
+    .testimonials-swiper {
+      .swiper-slide {
+        @apply !max-w-[720px];
+      }
+    }
+  }
+} 
