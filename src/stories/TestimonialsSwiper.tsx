@@ -106,12 +106,12 @@ const TestimonialsSwiper: React.FC<TestimonialsSwiperProps> = ({
           speed={speed}
           pagination={{
             clickable: true,
-            el: '.custom-swiper-pagination',
+            el: '.swiper-pagination',
           }}
           mousewheel={{
             forceToAxis: true,
           }}
-          className="testimonials-swiper"
+          className="swiper"
         >
           {testimonials.map((testimonial, index) => (
             <SwiperSlide key={index} className="!h-auto">
@@ -160,7 +160,7 @@ const TestimonialsSwiper: React.FC<TestimonialsSwiperProps> = ({
         </Swiper>
         
         {/* External Pagination */}
-        <div className="custom-swiper-pagination flex justify-center mt-8 lg:mt-12" ref={paginationRef} />
+        <div className="swiper-pagination flex justify-center mt-8 lg:mt-12" ref={paginationRef} />
       </div>
     </section>
   );

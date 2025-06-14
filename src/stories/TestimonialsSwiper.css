@@ -1,6 +1,14 @@
 @import "tailwindcss/preflight";
 @tailwind utilities;
 
+/* CSS Custom Properties (variables) */
+:root {
+  --card-lay: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --card-float: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --transition-card-float: 0.3s ease;
+  --transition-normal: 0.3s ease;
+}
+
 @layer components {
   .section {
     /* Responsive padding using clamp */
@@ -12,55 +20,96 @@
   }
 
   .testimonials {
-    .testimonials-swiper {
-      @apply !overflow-visible;
+    .swiper {
+      overflow: visible;
+      width: calc(100px + 60%);
+      max-width: 800px;
       
-      .swiper-slide {
-        @apply !w-auto !max-w-[90vw] sm:!max-w-[480px] lg:!max-w-[640px];
+      &-slide {
+        @apply !h-auto !bg-white !relative;
+        box-shadow: var(--card-lay);
+        transition: box-shadow var(--transition-card-float), 
+                    scale var(--transition-card-float), 
+                    opacity var(--transition-card-float);
+        will-change: box-shadow, scale, opacity;
         
-        /* Card styling with hover effects */
         & > div {
-          @apply transition-transform duration-300 hover:scale-105;
-          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-          
-          &:hover {
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+          @apply !h-full;
+        }
+
+        /* Quote icon positioning */
+        .quote-icon {
+          @apply !absolute !top-[-20px] !right-1 !mb-0 !opacity-0;
+          scale: 0.7;
+          transition: opacity var(--transition-card-float), 
+                      translate var(--transition-card-float);
+          will-change: opacity, translate;
+
+          @media (min-width: 768px) {
+            @apply !right-8;
+            scale: 1;
+          }
+        }
+
+        /* Active slide state */
+        &-active {
+          box-shadow: var(--card-float);
+          scale: 1.02;
+          transition-delay: 0.2s;
+
+          .quote-icon {
+            @apply !opacity-60;
+            translate: 0 -30px;
+            transition-delay: 0.4s;
+          }
+        }
+
+        /* Inactive slides */
+        &:not(.swiper-slide-active) {
+          @apply !opacity-50;
+        }
+      }
+
+      /* Pagination bullet styles */
+      &-pagination-bullet {
+        @apply !relative !opacity-100 !bg-transparent;
+        --bullet-size: 36px;
+        width: var(--bullet-size);
+        height: var(--bullet-size);
+        margin: 0 -3px !important;
+        
+        &:before {
+          content: '';
+          @apply !absolute !w-2 !h-2 !left-1/2 !top-1/2 !rounded-full;
+          transform: translate(-50%, -50%);
+          background-color: hsl(0, 0%, 80%);
+          transition: background-color var(--transition-normal);
+        }
+
+        &-active {
+          &:before {
+            background-color: hsl(0, 0%, 20%);
+          }
+        }
+
+        &:after {
+          content: '';
+          @apply !block !absolute !w-[6px] !h-[6px] !left-1/2 !top-1/2 !rounded-full !-z-10;
+          transform: translate(-50%, -50%);
+          border: 2px solid rgba(0, 0, 0, 0.4);
+          transition: width var(--transition-normal), height var(--transition-normal);
+        }
+
+        &:hover {
+          &:after {
+            transform-origin: center;
+            width: var(--bullet-size);
+            height: var(--bullet-size);
           }
         }
       }
-      
-      .swiper-slide-active {
-        & > div {
-          @apply scale-105;
-          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-        }
-      }
     }
-    
-    .quote-icon {
-      @apply w-8 h-8 lg:w-12 lg:h-12 mb-4 lg:mb-6 opacity-20;
-      
-      path {
-        @apply stroke-current;
-      }
-    }
-    
-    /* Custom pagination styles */
-    .custom-swiper-pagination {
-      @apply flex gap-3;
-      
-      .swiper-pagination-bullet {
-        @apply w-3 h-3 bg-white/30 rounded-full transition-all duration-300 cursor-pointer;
-        
-        &:hover {
-          @apply bg-white/50 scale-110;
-        }
-        
-        &.swiper-pagination-bullet-active {
-          @apply bg-white scale-125;
-        }
-      }
-    }
+
   }
 
   /* Typography styles */
