@@ -1,0 +1,28 @@
+.cta-button {
+    border-bottom: 1px solid black;
+    font-family: 'Noto Serif TC', serif;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.8;
+    letter-spacing: 0.08em;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+  
+    & .cta-button__arrow {
+      transition: translate 0.3s ease;
+      font-size: 15px;
+    }
+  
+    &:hover {
+      opacity: 1;
+      color: black;
+      border-bottom-color: black;
+  
+      & .cta-button__arrow {
+        translate: 16px;
+      }
+    }
+  }
