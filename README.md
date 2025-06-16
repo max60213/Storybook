@@ -1,36 +1,134 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# React Component Library
 
-## Getting Started
+> 一個基於 Next.js 的個人 React 元件庫，收集並管理實用的 UI 元件，便於在不同專案中重複使用。
 
-First, run the development server:
+## 📖 專案簡介
+
+這是一個基於 Next.js + TypeScript 的元件庫專案，使用 Storybook 進行元件開發與文檔管理。專案目標是將過往專案中開發的實用元件進行整理、優化並統一管理，提高開發效率並確保元件品質。
+
+## ✨ 特色功能
+
+- 🎨 **Storybook 整合** - 提供互動式元件文檔與測試環境
+- 🎯 **TypeScript 支援** - 完整的型別定義
+- 🧪 **測試覆蓋** - 使用 Vitest 進行單元測試
+- 🎭 **CSS 模組化** - 支援原生 CSS 巢狀語法
+- ⚡ **Turbopack 支援** - 更快的開發體驗
+- 🚀 **Next.js 15** - 使用最新的 Next.js 框架
+
+## 🚀 快速開始
+
+### 安裝依賴
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+# 或
+yarn install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 開發模式
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+# 啟動 Next.js 開發服務器
+npm run dev
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# 啟動 Storybook
+npm run storybook
+```
 
-## Learn More
+在瀏覽器中開啟 [http://localhost:3000](http://localhost:3000) 查看 Next.js 應用程式。
+在瀏覽器中開啟 [http://localhost:6006](http://localhost:6006) 查看 Storybook。
 
-To learn more about Next.js, take a look at the following resources:
+### 建置專案
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+# 建置 Next.js 專案
+npm run build
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# 建置 Storybook
+npm run build-storybook
+```
 
-## Deploy on Vercel
+### 執行測試
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+# 執行測試
+npm run test
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# 執行測試並監聽變更
+npm run test:watch
+```
+
+## 📦 目前可用元件
+
+### CTA Button
+- **描述**: 具有 hover 動畫效果的行動呼籲按鈕
+- **特色**: 滑鼠懸停時箭頭會向右移動
+- **使用場景**: 適用於引導使用者進行特定操作
+- **技術**: 使用原生 CSS 巢狀語法和 CSS transitions
+
+<!-- 🔄 TODO: 在這裡新增更多元件的說明 -->
+
+## 🛠 技術棧
+
+- **框架**: Next.js 15
+- **語言**: TypeScript
+- **樣式**: CSS (支援巢狀語法)
+- **文檔**: Storybook 8
+- **測試**: Vitest
+- **建置工具**: Turbopack (可選)
+- **程式碼品質**: ESLint
+
+## 📁 專案結構
+
+```
+├── .storybook/          # Storybook 配置
+├── app/                 # Next.js App Router
+│   ├── page.tsx         # 主頁面
+│   └── tailwind.css     # Tailwind CSS 配置
+├── stories/             # Storybook 故事檔案
+│   ├── components/      # 自定義元件
+│   │   ├── CTAButton.tsx
+│   │   ├── CTAButton.stories.tsx
+│   │   └── cta-button.css
+│   └── assets/          # 靜態資源
+├── public/              # 公開資源
+├── next.config.ts       # Next.js 配置 (含 Turbopack)
+└── README.md           # 專案說明
+```
+
+## 🎯 開發規範
+
+### Commit Message 格式
+
+遵循 [Conventional Commits](https://www.conventionalcommits.org/) 規範：
+
+```
+<type>: <description>
+
+# 範例
+feat: add new Button component
+fix: resolve responsive issue on mobile
+docs: update component documentation
+style: fix CSS formatting
+chore: update dependencies
+test: add unit tests for Button
+```
+
+### 元件開發流程
+
+1. 在 `stories/components/` 建立元件檔案 (`.tsx`)
+2. 撰寫對應的 `.stories.tsx` 檔案
+3. 新增 CSS 樣式檔案 (支援巢狀語法)
+4. 撰寫單元測試
+5. 在 Storybook 中測試元件
+6. 更新文檔
+
+## 📝 更新日誌
+
+### v0.1.0 (2024-XX-XX)
+- 初始化 Next.js 專案架構
+- 新增 CTA Button 元件
+- 整合 Storybook 開發環境
+- 設定 Vitest 測試環境
+- 配置 Turbopack 支援
+- 支援原生 CSS 巢狀語法
