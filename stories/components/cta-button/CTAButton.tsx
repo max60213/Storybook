@@ -11,8 +11,6 @@
  * <CTAButton href="/pricing">了解更多</CTAButton>
  */
 
-'use client';
-
 import React from 'react';
 import './cta-button.css';
 import Link from 'next/link';
