@@ -1,0 +1,89 @@
+@import '../../_variables.css';
+
+.testimonials {
+    .testimonials-swiper {
+        overflow: visible;
+        width: calc(100px + 60%);
+        max-width: 800px;
+
+        .swiper-slide {
+            height: auto;
+            background-color: white;
+            position: relative;
+            box-shadow: var(--card-lay);
+            transition: box-shadow var(--transition-card-float), scale var(--transition-card-float), opacity var(--transition-card-float);
+            will-change: box-shadow, scale, opacity;
+
+            & > div {
+                height: 100%;
+            }
+
+            /* Active state */
+            &.swiper-slide-active {
+                box-shadow: var(--card-float);
+                scale: 1.02;
+                transition-delay: 0.2s;
+            }
+
+            /* Inactive slides */
+            &:not(.swiper-slide-active) {
+                opacity: 0.5;
+            }
+        }
+    }
+
+    .custom-swiper-pagination {
+        .swiper-pagination-bullet {
+            position: relative;
+            opacity: 1;
+            --bullet-size: 36px;
+            width: var(--bullet-size);
+            height: var(--bullet-size);
+            background-color: transparent;
+            margin: 0 -3px !important;
+
+            &:before {
+                content: '';
+                position: absolute;
+                width: 8px;
+                height: 8px;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                background-color: hsl(0, 0%, 80%);
+                border-radius: 100%;
+                transition: background-color var(--transition-normal);
+            }
+
+            &.swiper-pagination-bullet-active {
+                &:before {
+                    background-color: hsl(0, 0%, 20%);
+                }
+            }
+
+            &:after {
+                content: '';
+                display: block;
+                position: absolute;
+                width: 6px;
+                height: 6px;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                border: 2px solid rgba(0, 0, 0, 0.4);
+                border-radius: 100%;
+                transition: width var(--transition-normal), height var(--transition-normal);
+                z-index: -1;
+            }
+
+            &:hover, 
+            &.swiper-pagination-bullet-active {
+                &:after {
+                    transform-origin: center;
+                    width: var(--bullet-size);
+                    height: var(--bullet-size);
+                }
+            }
+        }
+    }
+}
