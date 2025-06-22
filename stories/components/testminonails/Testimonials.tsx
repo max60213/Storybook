@@ -9,38 +9,74 @@ import './testimonials.css';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
-const Testimonials = () => {
-  const testimonials = [
-    {
-      name: "陳阿明",
-      position: "藏逸拍賣會 藏逸員",
-      avatar: "/api/placeholder/80/80",
-      company: "藏逸拍賣會",
-      testimonial: "藝信的驗證系統為畫廊提供了更高標準的藝術品鑑證機制，不僅強化交易的信任度，還讓作品來源更加透明可追溯。操作直覺，流程高效，為我們在市場上的專業形象與法律保障帶來了極大助益。"
-    },
-    {
-      name: "李美華",
-      position: "畫廊協會 理事長",
-      avatar: "/api/placeholder/80/80",
-      company: "畫廊協會",
-      testimonial: "藝信的驗證系統不僅滿足畫廊協會在法律層面的需求，對於藝術品交易與管理而言，流程簡單直覺，業界夥伴皆能快速上手，大幅提升交易信任與保障。"
-    },
-    {
-      name: "王志強",
-      position: "拍賣會 總經理",
-      avatar: "/api/placeholder/80/80",
-      company: "拍賣會",
-      testimonial: "藝信的驗證系統為拍賣會提供了可靠的藝術品鑑證支持，確保每件作品的來源與真實性，提升買家信心。高效的驗證流程讓我們能夠更順暢地運營，確保交易透明、公正，進一步提升市場競爭力。"
-    },
-    {
-      name: "張雅芳",
-      position: "藝術收藏家",
-      avatar: "/api/placeholder/80/80",
-      company: "私人收藏",
-      testimonial: "藝信的驗證系統不僅滿足畫廊協會在法律層面的需求，對於藝術品交易與管理而言，流程簡單直覺，業界夥伴皆能快速上手，大幅提升交易信任與保障。"
-    }
-  ];
+export interface TestimonialItem {
+  name: string;
+  position: string;
+  avatar: string;
+  company: string;
+  testimonial: string;
+}
 
+export interface TestimonialsProps {
+  testimonials?: TestimonialItem[];
+  autoplay?: boolean;
+  autoplayDelay?: number;
+  speed?: number;
+  mousewheel?: boolean;
+  loop?: boolean;
+  spaceBetween?: {
+    mobile: number;
+    tablet: number;
+    desktop: number;
+    large: number;
+  };
+}
+
+const defaultTestimonials: TestimonialItem[] = [
+  {
+    name: "陳阿明",
+    position: "藏逸拍賣會 藏逸員",
+    avatar: "/api/placeholder/80/80",
+    company: "藏逸拍賣會",
+    testimonial: "藝信的驗證系統為畫廊提供了更高標準的藝術品鑑證機制，不僅強化交易的信任度，還讓作品來源更加透明可追溯。操作直覺，流程高效，為我們在市場上的專業形象與法律保障帶來了極大助益。"
+  },
+  {
+    name: "李美華",
+    position: "畫廊協會 理事長",
+    avatar: "/api/placeholder/80/80",
+    company: "畫廊協會",
+    testimonial: "藝信的驗證系統不僅滿足畫廊協會在法律層面的需求，對於藝術品交易與管理而言，流程簡單直覺，業界夥伴皆能快速上手，大幅提升交易信任與保障。"
+  },
+  {
+    name: "王志強",
+    position: "拍賣會 總經理",
+    avatar: "/api/placeholder/80/80",
+    company: "拍賣會",
+    testimonial: "藝信的驗證系統為拍賣會提供了可靠的藝術品鑑證支持，確保每件作品的來源與真實性，提升買家信心。高效的驗證流程讓我們能夠更順暢地運營，確保交易透明、公正，進一步提升市場競爭力。"
+  },
+  {
+    name: "張雅芳",
+    position: "藝術收藏家",
+    avatar: "/api/placeholder/80/80",
+    company: "私人收藏",
+    testimonial: "藝信的驗證系統不僅滿足畫廊協會在法律層面的需求，對於藝術品交易與管理而言，流程簡單直覺，業界夥伴皆能快速上手，大幅提升交易信任與保障。"
+  }
+];
+
+const Testimonials: React.FC<TestimonialsProps> = ({
+  testimonials = defaultTestimonials,
+  autoplay = true,
+  autoplayDelay = 3000,
+  speed = 800,
+  mousewheel = true,
+  loop = true,
+  spaceBetween = {
+    mobile: 24,
+    tablet: 40,
+    desktop: 72,
+    large: 128,
+  }
+}) => {
   // 外部 pagination 容器
   const paginationRef = useRef<HTMLDivElement>(null);
 
@@ -54,34 +90,34 @@ const Testimonials = () => {
           centeredSlides={true}
           breakpoints={{
             0: {
-              spaceBetween: 24,
+              spaceBetween: spaceBetween.mobile,
             },
             800: {
-              spaceBetween: 40,
+              spaceBetween: spaceBetween.tablet,
             },
             1200: {
-              spaceBetween: 72,
+              spaceBetween: spaceBetween.desktop,
             },
             1600: {
-              spaceBetween: 128,
+              spaceBetween: spaceBetween.large,
             },
           }}
-          autoplay={{
-            delay: 3000,
+          autoplay={autoplay ? {
+            delay: autoplayDelay,
             disableOnInteraction: false,
-          }}
-          loop={true}
-          speed={800}
+          } : false}
+          loop={loop}
+          speed={speed}
           pagination={{
             clickable: true,
             el: '.custom-swiper-pagination',
           }}
-          mousewheel={{
+          mousewheel={mousewheel ? {
             forceToAxis: true,
             releaseOnEdges: true,
             sensitivity: 1,
             thresholdDelta: 10,
-          }}
+          } : false}
           className="testimonials-swiper"
         >
           {testimonials.map((testimonial, index) => (
