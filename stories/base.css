@@ -1,0 +1,81 @@
+.card--hoverable {
+    box-shadow: var(--card-lay);
+    transition: box-shadow var(--transition-card-float), scale var(--transition-card-float);
+    will-change: box-shadow, scale;
+
+    &:hover {
+        scale: 1.02;
+        box-shadow: var(--card-float);
+    }
+}
+
+.noto-sans-tc {
+    font-family: var(--font-noto-sans-tc);
+}
+
+.noto-serif-tc {
+    font-family: var(--font-noto-serif-tc);
+}
+
+.times-newer-roman {
+    font-family: var(--font-times-newer-roman);
+}
+
+.font-400 {
+    font-weight: 400;
+}
+
+.section {
+    /* from 600px to 1800px, 86~128px, 20~128px */
+    padding: clamp(5.375rem, 4.0625rem + 3.5vw, 8rem) clamp(1.25rem, -2.125rem + 9vw, 8rem);
+}
+
+h1,
+.h1 {
+    font-family: var(--font-noto-serif-tc), serif;
+    font-size: 4rem;
+    font-weight: 600;
+    letter-spacing: -0.05em;
+}
+
+h2,
+.h2 {
+    font-family: var(--font-noto-serif-tc), serif;
+    /* from 600px to 1800px, 28~36px */
+    font-size: clamp(1.75rem, 1.5rem + 0.6667vw, 2.25rem);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+}
+
+h3,
+.h3 {
+    font-family: var(--font-noto-serif-tc), serif;
+    /* from 600px to 1800px, 20~24px */
+    font-size: clamp(1.25rem, 1.125rem + 0.3333vw, 1.5rem);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+}
+
+h4,
+.subtitle {
+    font-family: var(--font-noto-sans-tc), sans-serif;
+    /* from 600px to 1800px, 18~24px */
+    font-size: clamp(1.125rem, 0.9375rem + 0.5vw, 1.5rem);
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    color: var(--color-subtitle);
+}
+
+p,
+.body {
+    font-family: var(--font-noto-sans-tc), sans-serif;
+    /* from 600px to 1800px, 16~18px */
+    font-size: clamp(1rem, 0.9375rem + 0.1667vw, 1.125rem);
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--color-body);
+}
+
+.text-secondary {
+    color: var(--color-secondary);
+}

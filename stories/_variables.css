@@ -1,0 +1,66 @@
+@mixin sm-only {
+    @media (max-width: 599px) {
+        @content;
+    }
+}
+
+@mixin sm-up {
+    @media (min-width: 600px) {
+        @content;
+    }
+}
+
+@mixin md-up {
+    @media (min-width: 900px) {
+        @content;
+    }
+}
+
+@mixin md-down {
+    @media (max-width: 899px) {
+        @content;
+    }
+}
+
+@mixin lg-up {
+    @media (min-width: 1200px) {
+        @content;
+    }
+}
+
+@mixin xl-up {
+    @media (min-width: 1800px) {
+        @content;
+    }
+}
+
+:root {
+    /* 主色系 */
+    --color-primary: #005CA2;
+    --color-title: hsla(0, 0%, 0%, 1);
+    --color-subtitle: rgba(0, 0, 0, 0.6);
+    --color-body: hsla(0, 0%, 0%, 0.8);
+    
+    /* 字體 */
+    --font-noto-serif-tc: var(--font-noto-serif-tc);
+    --font-noto-sans-tc: var(--font-noto-sans-tc);
+    
+    /* 過渡動畫 */
+    --transition-normal: 0.3s ease;
+    --transition-card-float: 0.5s ease;
+
+    --card-lay: 
+      0px 2px 4px rgba(0, 0, 0, 0.1), 
+      0px 7px 7px rgba(0, 0, 0, 0.09), 
+      0px 15px 9px rgba(0, 0, 0, 0.05), 
+      0px 27px 11px rgba(0, 0, 0, 0.01), 
+      0px 42px 12px rgba(0, 0, 0, 0.01);
+
+    --card-float: 
+      0px 5px 11px rgba(0, 0, 0, 0.1),
+      0px 20px 20px rgba(0, 0, 0, 0.09),
+      0px 45px 27px rgba(0, 0, 0, 0.05),
+      0px 81px 32px rgba(0, 0, 0, 0.01),
+      0px 126px 35px rgba(0, 0, 0, 0.01);
+  }
+  
