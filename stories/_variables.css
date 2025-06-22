@@ -1,36 +1,36 @@
-@mixin sm-only {
+@define-mixin sm-only {
     @media (max-width: 599px) {
-        @content;
+        @mixin-content;
     }
 }
 
-@mixin sm-up {
+@define-mixin sm-up {
     @media (min-width: 600px) {
-        @content;
+        @mixin-content;
     }
 }
 
-@mixin md-up {
+@define-mixin md-up {
     @media (min-width: 900px) {
-        @content;
+        @mixin-content;
     }
 }
 
-@mixin md-down {
+@define-mixin md-down {
     @media (max-width: 899px) {
-        @content;
+        @mixin-content;
     }
 }
 
-@mixin lg-up {
+@define-mixin lg-up {
     @media (min-width: 1200px) {
-        @content;
+        @mixin-content;
     }
 }
 
-@mixin xl-up {
+@define-mixin xl-up {
     @media (min-width: 1800px) {
-        @content;
+        @mixin-content;
     }
 }
 
